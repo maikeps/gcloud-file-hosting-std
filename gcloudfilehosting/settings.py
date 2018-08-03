@@ -25,7 +25,7 @@ SECRET_KEY = '_g-#6r-4kwpf)w74202-#rp@x-$gl*4+3j*^s_(_&8wh%73@%d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'bdr-challenge-std.appspot.com']
 
 
 # Application definition
@@ -74,10 +74,6 @@ WSGI_APPLICATION = 'gcloudfilehosting.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 }
 
 
