@@ -1,1 +1,12 @@
-File browser placeholder.
+Files uploaded:
+</p>
+<form action="{% url 'browse:delete' %}" method="POST">
+	{% csrf_token %}
+	{% for filename in file_list %}
+		<label><input type="checkbox" name="file_item" value="{{ filename }}"></label>
+		<a href="{% url 'browse:download' filename %}">{{ filename }}</a>
+		<br>
+	{% endfor %}
+	</p>
+	<input type="submit" name="action" value="Delete"/>
+</form>
