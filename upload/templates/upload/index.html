@@ -3,6 +3,6 @@ Choose the file you wish to upload:
 
 <form action="{% url 'upload:file'%}" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-	<input type='file' name='file'/>
-	<input type="submit" value="Upload" />
+	{{ form }}
+	<input type="submit" value="Upload" /> 
 </form>

@@ -1,4 +1,3 @@
-from django.core.files.storage import default_storage
 from django.shortcuts import render
 
 # Create your views here.

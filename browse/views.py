@@ -1,26 +1,25 @@
 from django.conf import settings
-from django.http import HttpResponse
+from django.core.files.storage import default_storage
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 import os
 
 # Create your views here.
 def index(request):
-	file_list = os.listdir(settings.FILE_STORAGE_LOCATION)
+	file_list = default_storage.listdir('')[1]
 	return render(request, 'browse/index.html', {'file_list': file_list})
 
 def delete(request):
 	checked = request.POST.getlist('file_item')
-	files = ''
 	for item in checked:
-		os.remove(os.path.join(settings.FILE_STORAGE_LOCATION, item))
+		default_storage.delete(item)
 
 	return HttpResponse('%d files removed.' % len(checked))
 
 def download(request, filename):
-	filepath = os.path.join(settings.FILE_STORAGE_LOCATION, filename)
-	if os.path.exists(filepath):
-		with open(filepath, 'rb') as f:
+	if default_storage.exists(filename):
+		with default_storage.open(filename, 'r') as f:
 			response = HttpResponse(f.read(), content_type='application/force-download')
-			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filepath)
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filename)
 			return response
 	raise Http404

@@ -119,4 +119,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-FILE_STORAGE_LOCATION = BASE_DIR + '/storage/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'bdr-challenge-bucket'
