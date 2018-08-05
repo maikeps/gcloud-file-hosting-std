@@ -1,12 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File Browser</title>
+</head>
+<style type="text/css">
+#files {
+	border-collapse: collapse;
+}
+
+#files td, #files th {
+	border: 1px solid #ddd;
+	padding: 4px;
+	line-height: 4px;
+}
+
+#files tr:nth-child(even){background-color: #f2f2f2;}
+
+#files tr:hover {background-color: #ddd;}
+
+#files th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: white;
+}
+</style>
+<body>
+
 Files uploaded:
 </p>
 <form action="{% url 'browse:delete' %}" method="POST">
 	{% csrf_token %}
-	{% for filename in file_list %}
-		<label><input type="checkbox" name="file_item" value="{{ filename }}"></label>
-		<a href="{% url 'browse:download' filename %}">{{ filename }}</a>
-		<br>
-	{% endfor %}
+	<table id='files'>
+		<tr>
+			<th>  </th>
+			<th> Filesize (Bytes) </th>
+			<th> Filename </th>
+		</tr>
+		{% for file in file_list %}
+			<tr>
+				<td><label><input type="checkbox" name="file_item" value="{{ file.filename }}"></label></td>
+				<td> {{ file.filesize }} </td>
+				<td><a href="{% url 'browse:download' filename %}">{{ file.filename }}</a></td>
+			</tr>
+		{% endfor %}
+	</table>
 	</p>
 	<input type="submit" name="action" value="Delete"/>
 </form>
+
+<a href="{% url 'menu:index' %}">Back</a>
+
+</body>
+</html>

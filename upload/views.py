@@ -26,5 +26,6 @@ def success(request):
 
 def handle_file_upload(f):
 	with default_storage.open(f.name, 'w') as uploaded_file:
+		# Chunks of 64Kb
 		for chunk in f.chunks():
 			uploaded_file.write(chunk)
