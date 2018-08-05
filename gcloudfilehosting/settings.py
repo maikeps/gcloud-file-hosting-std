@@ -25,7 +25,7 @@ SECRET_KEY = '_g-#6r-4kwpf)w74202-#rp@x-$gl*4+3j*^s_(_&8wh%73@%d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'bdr-challenge-std.appspot.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
